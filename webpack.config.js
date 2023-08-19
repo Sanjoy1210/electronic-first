@@ -1,56 +1,7 @@
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const webpack = require("webpack");
-
-// module.exports = ({ mode }) => {
-//   return {
-//     mode,
-//     resolve: {
-//       extensions: [".js"],
-//     },
-//     entry: "./src/index.js",
-//     output: {
-//       filename: "dist.js",
-//       assetModuleFilename: "[name].[ext]",
-//     },
-//     module: {
-//       rules: [
-//         {
-//           test: /\.css$/,
-//           use: [MiniCssExtractPlugin.loader, "css-loader"],
-//         },
-//         {
-//           test: /\.scss$/,
-//           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-//         },
-//         {
-//           test: /\.(png|jpe?g|gif|svg)$/i,
-//           use: [
-//             {
-//               loader: "file-loader",
-//               options: {
-//                 name: "[name].[ext]",
-//                 outputPath: "images", // Output directory for images
-//               },
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//     plugins: [
-//       new webpack.ProgressPlugin(),
-//       new MiniCssExtractPlugin(),
-//       new HtmlWebpackPlugin({
-//         template: "src/index.html",
-//       }),
-//     ],
-//   };
-// };
-
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require("path");
 
 module.exports = ({ mode }) => {
@@ -73,14 +24,7 @@ module.exports = ({ mode }) => {
         {
           test: /\.scss$/,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-        },
-        {
-          test: /\.(png|jpe?g|gif|svg)$/i,
-          type: "asset/resource",
-          generator: {
-            filename: "images/[name][ext]",
-          },
-        },
+        }
       ],
     },
     plugins: [
@@ -89,6 +33,12 @@ module.exports = ({ mode }) => {
       new HtmlWebpackPlugin({
         template: "src/index.html",
       }),
+      new CopyWebpackPlugin({
+        patterns: [
+            { from: 'src/images' , to: "images"},
+        ]
+     })
+
     ],
   };
 };
