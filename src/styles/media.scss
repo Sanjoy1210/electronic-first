@@ -6,6 +6,23 @@
   .search-box.active {
     width: 350px;
   }
+  .nav {
+    .nav-bottom-part {
+      .nav-panel {
+        // width: 90%;
+
+        .panel-container {
+          .platforms {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          .paid-cards {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 540px) {
@@ -46,6 +63,46 @@
   .trendings {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .nav {
+    .nav-bottom-part {
+      .nav-panel {
+        width: 75%;
+
+        .panel-container {
+          .platforms {
+            .platform-item {
+              font-size: 15px;
+              .platform-icon {
+                padding: 11px;
+                font-size: 22px;
+              }
+            }
+          }
+
+          .paid-cards {
+            // grid-template-columns: repeat(3, 1fr);
+
+            .card {
+              .card-info {
+                .card-icon {
+                  padding: 11px;
+                  font-size: 22px;
+                }
+                .card-title {
+                  font-size: 20px;
+                }
+              }
+              .card-content {
+                font-size: 15px;
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -85,8 +142,36 @@
         }
       }
 
-      .search {
-        display: flex;
+      #search-box-2 {
+        display: block;
+        top: 46%;
+      }
+      #search-box-2.active {
+        width: 100%;
+        height: 44px;
+        position: fixed;
+        left: 0;
+        top: 46%;
+      }
+      #search-box-2.active .bg-black {
+        display: none;
+      }
+      #search-box-2 .search-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        top: 65%;
+        line-height: 50px;
+      }
+
+      .nav-panel {
+        width: 100%;
+
+        .panel-container {
+          .platform-info {
+            margin-bottom: 20px;
+          }
+        }
       }
     }
   }

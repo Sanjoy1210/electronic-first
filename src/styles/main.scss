@@ -63,20 +63,6 @@ a {
   z-index: -1;
 }
 
-.search {
-  background-color: $primary-color;
-
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  cursor: pointer;
-  .search-icon {
-    color: $secondary-color;
-    font-size: 1.4rem;
-    padding-top: 0.4rem;
-  }
-}
-
 /* ============== header style start =========== */
 .header-content {
   display: flex;
@@ -203,6 +189,130 @@ a {
       }
     }
 
+    .nav-panel {
+      display: none;
+      position: absolute;
+      top: 110%;
+      width: 100%;
+
+      .bg-glossy {
+        border-radius: 10px;
+      }
+
+      .panel-container {
+        padding: 10px;
+        position: relative;
+        z-index: 10;
+        height: auto;
+        overflow: auto;
+
+        .platform-info {
+          width: 100%;
+          padding: 8px 12px;
+          background: $onyx-gray;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 15px;
+          font-weight: 500;
+          margin-bottom: 10px;
+          border-radius: 10px;
+
+          button {
+            background-color: transparent;
+            color: $secondary-color;
+            border: none;
+            cursor: pointer;
+          }
+        }
+
+        .platforms {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          // gap: 10px;
+          margin-bottom: 20px;
+
+          .platform-item {
+            width: 100%;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+
+            .platform-icon {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              // width: 30px;
+              // height: 30px;
+              padding: 8px;
+              border-radius: 50%;
+              background: $primary-color;
+              font-size: 17px;
+              margin-right: 10px;
+            }
+          }
+
+          .platform-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(3.4375rem) saturate(100%);
+            border-radius: 999px;
+          }
+        }
+
+        .paid-cards {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+
+          .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3px 5px;
+
+            .card-info {
+              display: flex;
+              align-items: center;
+              // justify-content: center;
+
+              .card-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px;
+                border-radius: 50%;
+                background: $primary-color;
+                font-size: 17px;
+                margin-right: 10px;
+              }
+
+              .card-title {
+                font-size: 15px;
+                font-weight: 500;
+              }
+            }
+
+            .card-content {
+              font-size: 12px;
+              margin-top: 6px;
+            }
+          }
+
+          .card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(3.4375rem) saturate(100%);
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+
+    .nav-panel.active {
+      display: block;
+    }
+
     .search {
       display: none;
       width: 3.75rem;
@@ -257,7 +367,6 @@ a {
     }
 
     .banner-title {
-      // font-size: 1.5rem;
       font-size: 1.1rem;
       font-weight: 500;
       width: 50%;
@@ -274,31 +383,6 @@ a {
     .prices {
       display: flex;
       align-items: center;
-
-      // .discount {
-      //   background-color: $primary-color;
-      //   font-size: 0.8rem;
-      //   color: $secondary-color;
-      //   // padding: 0.375rem 0.4rem;
-      //   padding: 0.125rem 0.25rem;
-      //   border-radius: 0.2rem;
-      //   position: relative;
-      //   // margin-right: 2rem;
-      //   margin-right: 1.4rem;
-      // }
-      // .discount::after {
-      //   content: "";
-      //   transform: skewX(16deg);
-      //   width: 100%;
-      //   border-radius: 6px 3px;
-      //   position: absolute;
-      //   background-color: $primary-color;
-      //   top: 0;
-      //   bottom: 0;
-      //   right: -4px;
-      //   z-index: -1;
-      // }
-
       .price {
         font-size: 1.3rem;
       }
@@ -349,7 +433,6 @@ a {
 
   .trendings {
     display: grid;
-    // grid-template-columns: repeat(1, 1fr);
     gap: 1.25rem;
     .trending-card {
       display: flex;
@@ -386,7 +469,9 @@ a {
   }
 }
 /* ============== trending style end =============== */
-
+#search-box-2 {
+  display: none;
+}
 .search-box {
   position: relative;
   height: 35px;
@@ -434,8 +519,6 @@ a {
   right: 0px;
   top: 50%;
   transform: translateY(-50%);
-  height: 35px;
-  width: 80px;
   background: $primary-color;
   border-radius: 999px;
   text-align: center;
@@ -444,7 +527,10 @@ a {
   color: $secondary-color;
   cursor: pointer;
   z-index: 1;
-  // transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+#search-box-1 .search-icon {
+  height: 35px;
+  width: 80px;
 }
 .search-box .search-icon.active {
   display: none;
@@ -457,11 +543,9 @@ a {
   font-size: 25px;
   color: #fff;
   cursor: pointer;
-  transition: all 0.5s 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .search-box .cancel-icon.active {
   right: -30px;
-  transform: translateY(-50%) rotate(360deg);
 }
 .search-box .search-data {
   text-align: center;
